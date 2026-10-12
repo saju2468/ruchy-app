@@ -45,21 +45,22 @@ ruchy-app/
 
 ## 2. Technology Stack & Configuration
 
-| Layer | Technology | Version / Configuration |
-|---|---|---|
-| **Frontend Framework** | React + React DOM | `^19.2.8` |
-| **Bundler & Dev Server** | Vite | `^8.3.0` (configured with `root: "frontend"`) |
-| **Routing** | React Router | `^8.4.0` (imported from `"react-router"`) |
-| **Styling** | Tailwind CSS v4 | `@tailwindcss/vite` `^4.3.3` + `tailwindcss` `^4.3.3` |
-| **Icons** | Lucide React | `^1.48.0` (`ShoppingCart`, `User`, `Clock`, `MapPin`, `Star`) |
-| **Backend / Middleware** | Express + CORS | `express` `^5.2.1`, `cors` `^2.8.6` (configured in root) |
-| **Typography** | Google Fonts | `Montserrat` (400, 500, 600, 700, 800) |
+| Layer                    | Technology        | Version / Configuration                                       |
+| ------------------------ | ----------------- | ------------------------------------------------------------- |
+| **Frontend Framework**   | React + React DOM | `^19.2.8`                                                     |
+| **Bundler & Dev Server** | Vite              | `^8.3.0` (configured with `root: "frontend"`)                 |
+| **Routing**              | React Router      | `^8.4.0` (imported from `"react-router"`)                     |
+| **Styling**              | Tailwind CSS v4   | `@tailwindcss/vite` `^4.3.3` + `tailwindcss` `^4.3.3`         |
+| **Icons**                | Lucide React      | `^1.48.0` (`ShoppingCart`, `User`, `Clock`, `MapPin`, `Star`) |
+| **Backend / Middleware** | Express + CORS    | `express` `^5.2.1`, `cors` `^2.8.6` (configured in root)      |
+| **Typography**           | Google Fonts      | `Montserrat` (400, 500, 600, 700, 800)                        |
 
 ---
 
 ## 3. Vite & Tailwind CSS v4 Setup
 
 ### Vite Setup (`vite.config.js`)
+
 - **Plugin Integration**: Uses `@vitejs/plugin-react` and `@tailwindcss/vite`.
 - **Root Directory**: `root: "frontend"` specifies the client root.
 - **Build Output**: `outDir: "../dist"`, `emptyOutDir: true`.
@@ -80,6 +81,7 @@ export default defineConfig({
 ```
 
 ### Tailwind v4 Configuration (`frontend/src/index.css`)
+
 - **Modern Import**: Relies on `@import "tailwindcss";` (no `tailwind.config.js` required in Tailwind v4).
 - **Custom Global Styles**:
   - Font applied to `body`: `'Montserrat', sans-serif`.
@@ -94,6 +96,7 @@ export default defineConfig({
 Implemented in `frontend/src/main.jsx` using `createBrowserRouter` and `RouterProvider` from `react-router`:
 
 ### Route Hierarchy
+
 - **Parent Layout Route**: `/`
   - Elements: `<Header />` with nested `<Outlet />`
   - Error Boundary: `<Error />` (catches 404 and unhandled routing exceptions)
@@ -154,6 +157,7 @@ Implemented in `frontend/src/main.jsx` using `createBrowserRouter` and `RouterPr
 ## 6. Swiggy API Integration
 
 ### 1. Restaurant Listing API
+
 - **Endpoint**:
   ```
   https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9338752&lng=77.6301732&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
@@ -162,17 +166,20 @@ Implemented in `frontend/src/main.jsx` using `createBrowserRouter` and `RouterPr
 - **Data Access Path**:
   ```javascript
   json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
-    (restaurant) => restaurant.info
+    (restaurant) => restaurant.info,
   );
   ```
 
 ### 2. Media & Image CDN (`utilities/constants.jsx`)
+
 - **Base URL**:
   ```javascript
-  export const RestaurantCardImage = "https://media-assets.swiggy.com/swiggy/image/upload/";
+  export const RestaurantCardImage =
+    "https://media-assets.swiggy.com/swiggy/image/upload/";
   ```
 
 ### 3. Fallback / Mock Data (`utilities/mockData.jsx`)
+
 - Contains static restaurant models (KFC, Dominos, Pizza Hut) used during offline development or API fallback.
 
 ---
@@ -180,10 +187,12 @@ Implemented in `frontend/src/main.jsx` using `createBrowserRouter` and `RouterPr
 ## 7. RestaurantDetails Dynamic Routing (`/restaurant/:resId`)
 
 ### Route & Params
+
 - Implemented in `frontend/src/pages/RestaurantDetails.jsx`.
 - Uses `const { resId } = useParams()` from `react-router`.
 
 ### Menu API Endpoint
+
 - **Live Menu Fetch**:
   ```
   https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9338752&lng=77.6301732&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER
@@ -199,6 +208,7 @@ Implemented in `frontend/src/main.jsx` using `createBrowserRouter` and `RouterPr
 ## 8. Express Backend Architecture & Plan
 
 ### Current Status
+
 - `express` (`^5.2.1`) and `cors` (`^2.8.6`) are already present in root `package.json`.
 - Folders `server/` and `backend/` are set up at the project root.
 

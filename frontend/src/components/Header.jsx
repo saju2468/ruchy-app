@@ -1,7 +1,12 @@
 import { ShoppingCart, User } from "lucide-react";
 import { Link } from "react-router";
+import useOnlineStatus from "./useOnlineStatus";
 
 const Header = () => {
+  const onlineStatus = useOnlineStatus();
+
+  console.log(onlineStatus);
+
   return (
     <>
       <header className="py-2.5 bg-[#fcf2e8]">
@@ -33,6 +38,8 @@ const Header = () => {
               </nav>
             </div>
             <div className="login_wrapper flex items-center gap-5">
+              <div className="online_status">{onlineStatus ? "✅" : "❌"}</div>
+
               <div className="login_btn flex items-center gap-2">
                 <User />
                 <span>User</span>
