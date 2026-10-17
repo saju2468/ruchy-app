@@ -199,9 +199,15 @@ Implemented in `frontend/src/main.jsx` using `createBrowserRouter` and `RouterPr
   ```
 - **Restaurant Info Extracted**:
   - Name, Cloudinary image, `avgRating`, `totalRatingsString`, `costForTwo`, and `cuisines` list.
-- **Next Planned Menu Enhancements**:
-  - Extract category cards and item accordions from `resInfo?.cards` (e.g. `REGULAR` menu cards).
-  - Render individual item cards with price, veg/non-veg indicator, description, image, and "ADD" button.
+- **Menu Implementation Details**:
+  - `useRestaurantDetails(resId)` hook fetches real Swiggy menu data with `&catalog_qa=undefined&submitAction=ENTER`.
+  - Safely reads raw text response to prevent `SyntaxError: Unexpected end of JSON input` when Swiggy sends empty bodies or HTTP 202 challenges on `localhost`.
+  - Integrates fallback menu dataset (`mockMenuData.jsx`) following the identical Swiggy `groupedCard` structure so accordions remain interactive and functional when upstream APIs block direct browser requests.
+  - Exposes `{ resInfo, isLoading, error, isUsingFallback, refetch }` for resilient loading and retry controls.
+  - Extracts regular menu categories from `resInfo?.cards?.find(c => c?.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards`.
+  - Filtered by `itemCards` and `title` (Swiggy `ItemCategory`).
+  - `<RestaurantCategory />` renders collapsible accordions with dynamic item counts (e.g. `Recommended (6)`), animated chevron toggle, and expanded Recommended default.
+  - `<ItemList />` renders items with Veg/Non-Veg indicator, rupee-formatted price (divided by 100 from paise), description, image, and ADD button.
 
 ---
 

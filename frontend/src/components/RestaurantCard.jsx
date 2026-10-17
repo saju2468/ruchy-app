@@ -1,13 +1,23 @@
 import { Clock, MapPin, Star } from "lucide-react";
 import { RestaurantCardImage } from "../utilities/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utilities/cartSlice";
 
 const RestaurantCard = (props) => {
   const { resCardData } = props;
   const { name, cuisines, avgRating, cloudinaryImageId, sla, areaName } =
     resCardData;
 
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(addItem(resCardData));
+  };
+
   return (
     <>
+    
       <div className="restaurant_card bg-white shadow-lg rounded-b-xl hover:shadow-2xl transition-all duration-200 ease-in-out cursor-pointer ">
         <div className="restaurant_image  overflow-hidden">
           <img
@@ -39,6 +49,15 @@ const RestaurantCard = (props) => {
               <Clock size={16} color="#000000" />
               {sla?.slaString}
             </div>
+          </div>
+
+          <div className="cart_button mt-5 relative z-10">
+            <button
+              onClick={handleClick}
+              className="cursor-pointer bg-orange-600 px-5 py-2.5 text-white w-full rounded-xl"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
