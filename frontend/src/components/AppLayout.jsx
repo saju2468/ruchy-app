@@ -9,23 +9,19 @@ import appStore from "../utilities/appStore.jsx";
 
 const AppLayout = () => {
   const isOnline = useOnlineStatus();
+  const [userName, setUserName] = useState("sajin");
 
-  if (!isOnline) {
-    return <Offline />;
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [userName, setUserName] = useState();
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const data = {
       name: "sajin",
     };
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setUserName(data.name);
   }, []);
+
+  if (!isOnline) {
+    return <Offline />;
+  }
 
   return (
     <>
