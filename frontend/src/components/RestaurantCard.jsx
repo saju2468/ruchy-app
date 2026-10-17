@@ -17,7 +17,6 @@ const RestaurantCard = (props) => {
 
   return (
     <>
-    
       <div className="restaurant_card bg-white shadow-lg rounded-b-xl hover:shadow-2xl transition-all duration-200 ease-in-out cursor-pointer ">
         <div className="restaurant_image  overflow-hidden">
           <img
@@ -28,8 +27,10 @@ const RestaurantCard = (props) => {
         </div>
         <div className="restaurant_details p-4.5 flex flex-col justify-between ">
           <div className="wrapper">
-            <h3 className="font-semibold text-black text-lg">{name}</h3>
-            <h4 className="text-sm text-black/60 font-medium mt-0.5">
+            <h3 className="font-semibold text-black text-lg  line-clamp-1">
+              {name}
+            </h3>
+            <h4 className="text-sm text-black/60 font-medium mt-0.5 line-clamp-1">
               {cuisines.join(", ")}
             </h4>
             <div className="location flex gap-1.5 items-center mt-1.5">

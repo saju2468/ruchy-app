@@ -15,7 +15,6 @@ const AppLayout = () => {
     const data = {
       name: "sajin",
     };
-
     setUserName(data.name);
   }, []);
 

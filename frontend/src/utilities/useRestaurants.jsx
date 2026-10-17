@@ -22,7 +22,6 @@ const useRestaurants = () => {
             (restaurant) => restaurant.info,
           );
         setListOfRestaurants(resData || []);
-        console.log("success");
       } catch (error) {
         console.error("Failed to fetch restaurants:", error);
       }
