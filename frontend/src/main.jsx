@@ -6,6 +6,8 @@ import Home from "./pages/Home.jsx";
 import Error from "./components/Error.jsx";
 import { StrictMode, lazy, Suspense } from "react";
 import RestaurantDetails from "./pages/RestaurantDetails.jsx";
+import Cart from "./pages/Cart.jsx";
+import CartPage from "./pages/cartPage.jsx";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const AboutPage = lazy(() => import("./pages/About.jsx"));
@@ -23,7 +25,9 @@ const router = createBrowserRouter([
             fallback={
               <div className="container py-16 flex flex-col justify-center items-center min-h-[50vh] text-center">
                 <div className="w-10 h-10 border-4 border-orange-200 border-t-orange-600 rounded-full animate-spin mb-4"></div>
-                <p className="text-gray-500 font-medium">Loading About page...</p>
+                <p className="text-gray-500 font-medium">
+                  Loading About page...
+                </p>
               </div>
             }
           >
@@ -34,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "restaurant/:resId",
         element: <RestaurantDetails />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "cartPage",
+        element: <CartPage />,
       },
     ],
     errorElement: <Error />,

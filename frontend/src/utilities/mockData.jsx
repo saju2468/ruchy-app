@@ -36,3 +36,12 @@ export const restaurantList = [
     imgsrc: "/restaurant1.avif",
   },
 ];
+
+export const item = {
+  menuItemId: "101",
+  name: "Special Andhra Chicken Biryani",
+  description:
+    "Aromatic basmati rice cooked with succulent chicken pieces in authentic Andhra spices, served with raita and spicy salan.",
+  price: 32000,
+  quantity: 2,
+};

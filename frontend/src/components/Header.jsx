@@ -52,10 +52,12 @@ const Header = () => {
                 <span>{loggedInUser}</span>
               </div>
               <div className="cart_btn flex items-center gap-1 relative">
-                <ShoppingCart />
-                <span className="absolute -top-3.75 left-3.75 rounded-full bg-orange-600 text-white py-1 px-2 text-xs">
-                  {cartItems.length}
-                </span>
+                <Link to="/cartpage">
+                  <ShoppingCart />
+                  <span className="absolute -top-3.75 left-3.75 rounded-full bg-orange-600 text-white py-1 px-2 text-xs">
+                    {cartItems.length}
+                  </span>
+                </Link>
               </div>
             </div>
           </div>
